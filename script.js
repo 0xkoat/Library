@@ -91,6 +91,7 @@ function attachCardEventListeners() {
 }
 
 
+
 function removeBook(bookId) {
     
     const bookIndex = myLibrary.findIndex(book => book.id === bookId);
@@ -99,6 +100,7 @@ function removeBook(bookId) {
         displayBooks();
     }
 }
+
 
 
 function toggleReadStatus(bookId) {
@@ -110,10 +112,61 @@ function toggleReadStatus(bookId) {
 }
 
 
+
 document.addEventListener('DOMContentLoaded', function () {
     displayBooks();
     document.getElementById('add-book-btn').addEventListener('click', function () {
         document.getElementById('book-form').classList.remove('hidden');
+        document.getElementById('title').focus();
     });
 });
+
+
+
+document.getElementById('cancel-btn').addEventListener('click', function () {
+    resetFrom();
+    document.getElementById('book-form').classList.add('hidden');
+});
+
+
+
+document.getElementById('book-form').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const title = document.getElementById('title').value;
+    const author = document.getElementById('author').value;
+    const pages = document.getElementById('pages').value;
+    const isRead = document.getElementById('is-read').checked;
+
+    if (!title.trim() || !author.trim()) {
+        alert("Please fill in title and author");
+        return;
+    }
+
+    const newBook = {
+        id: crypto.randomUUID(),
+        title: title.trim(),
+        author: author.trim(),
+        pages: pages ? parseInt(pages) : 0,
+        isRead: isRead
+    };
+
+    myLibrary.push(newBook);
+    displayBooks();
+    resetFrom();
+    document.getElementById('book-form').classList.add('hidden');
+});
+
+
+
+function resetFrom() {
+    document.getElementById('book-form').reset();
+    document.getElementById('pages').value = 100;
+}
+
+
+
+
+
+
 
