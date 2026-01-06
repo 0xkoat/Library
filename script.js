@@ -89,3 +89,31 @@ function attachCardEventListeners() {
     });
 
 }
+
+
+function removeBook(bookId) {
+    
+    const bookIndex = myLibray.findIndex(book => book.id === bookId);
+    if (bookIndex !== -1) {
+        myLibray.splice(bookIndex, 1);
+        displayBooks();
+    }
+}
+
+
+function toggleReadStaus(bookId) {
+    const book = myLibray.find(book => book.id === bookId);
+    if (book) {
+        book.isRead = !book.isRead;
+        displayBooks();
+    }
+}
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    displayBooks();
+    document.getElementById('add-book-btn').addEventListener('click', function () {
+        document.getElementById('book-form').classList.remove('hidden');
+    });
+});
+
