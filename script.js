@@ -75,7 +75,7 @@ function attachCardEventListeners() {
     document.querySelectorAll('.remove-book').forEach(btn => {
         btn.addEventListener('click', function () {
             const card = this.closest('.book-card');
-            const bookId = parseInt(card.dataset.id);
+            const bookId = card.dataset.id;
             removeBook(bookId);
         });
     });
@@ -83,8 +83,8 @@ function attachCardEventListeners() {
     document.querySelectorAll('.toggle-read').forEach(btn => {
         btn.addEventListener('click', function () {
             const card = this.closest('.book-card');
-            const bookId = parseInt(card.dataset.id);
-            toggleReadStaus(bookId);
+            const bookId = card.dataset.id;
+            toggleReadStatus(bookId);
         });
     });
 
@@ -101,7 +101,7 @@ function removeBook(bookId) {
 }
 
 
-function toggleReadStaus(bookId) {
+function toggleReadStatus(bookId) {
     const book = myLibrary.find(book => book.id === bookId);
     if (book) {
         book.isRead = !book.isRead;
