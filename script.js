@@ -23,12 +23,12 @@ function createBookCard(book) {
 
     const title = document.createElement('h3');
     title.className = 'title';
-    title.textContent = book.title;
+    title.textContent = `${book.title}`;
     card.appendChild(title);
 
     const author = document.createElement('p');
     author.className = 'author';
-    title.textContent = `By ${book.author}`;
+    author.textContent = `By ${book.author}`;
     card.appendChild(author);
 
     const pages = document.createElement('p');
