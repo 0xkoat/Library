@@ -1,4 +1,4 @@
-let myLibray = [
+let myLibrary = [
     {
         id: crypto.randomUUID(),
         title: "The Hobbit",
@@ -28,12 +28,12 @@ function createBookCard(book) {
 
     const author = document.createElement('p');
     author.className = 'author';
-    title.textContent = 'By ${book.author}';
+    title.textContent = `By ${book.author}`;
     card.appendChild(author);
 
     const pages = document.createElement('p');
     pages.className = 'pages';
-    pages.textContent = '${book.pages} pages';
+    pages.textContent = `${book.pages} pages`;
     card.appendChild(pages);
 
     const readBtn = document.createElement('button');
@@ -60,7 +60,7 @@ function displayBooks() {
     container.innerHTML = '';
 
 
-    myLibray.forEach(book => {
+    myLibrary.forEach(book => {
         const bookCard = createBookCard(book);
         container.appendChild(bookCard);
     });
@@ -93,16 +93,16 @@ function attachCardEventListeners() {
 
 function removeBook(bookId) {
     
-    const bookIndex = myLibray.findIndex(book => book.id === bookId);
+    const bookIndex = myLibrary.findIndex(book => book.id === bookId);
     if (bookIndex !== -1) {
-        myLibray.splice(bookIndex, 1);
+        myLibrary.splice(bookIndex, 1);
         displayBooks();
     }
 }
 
 
 function toggleReadStaus(bookId) {
-    const book = myLibray.find(book => book.id === bookId);
+    const book = myLibrary.find(book => book.id === bookId);
     if (book) {
         book.isRead = !book.isRead;
         displayBooks();
