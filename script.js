@@ -51,3 +51,41 @@ function createBookCard(book) {
 
     return card;
 }
+
+
+
+function displayBooks() {
+    
+    const container = document.getElementById('books-container');
+    container.innerHTML = '';
+
+
+    myLibray.forEach(book => {
+        const bookCard = createBookCard(book);
+        container.appendChild(bookCard);
+    });
+
+    attachCardEventListeners();
+}
+
+
+
+function attachCardEventListeners() {
+    
+    document.querySelectorAll('.remove-book').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const card = this.closest('.book-card');
+            const bookId = parseInt(card.dataset.id);
+            removeBook(bookId);
+        });
+    });
+
+    document.querySelectorAll('.toggle-read').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const card = this.closest('.book-card');
+            const bookId = parseInt(card.dataset.id);
+            toggleReadStaus(bookId);
+        });
+    });
+
+}
